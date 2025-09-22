@@ -20,7 +20,7 @@ public abstract class Giocatore {
         this.inventario = new ArrayList<>();
     }
 
-    public void attaccaMischia(Giocatore target, int danno) {
+    public void attacca(Giocatore target, int danno) {
 
         boolean haArma = false;
 
@@ -48,6 +48,46 @@ public abstract class Giocatore {
 
         // modifico i puntivita del target
         target.setHp(target.getHp() - danno / (armature + 1)); 
+    }
+
+    // calcola il peso attuale portato dal giocatore
+    private void aggiornaPeso() {
+
+        peso = 0;
+        for (Equip e : inventario) {
+            peso += e.getPeso();
+        }
+    }
+
+    // elimina tutti gli elementi dall'inventario
+    public void svuotaInventario() {
+        inventario.clear();
+        aggiornaPeso();
+    }
+
+    // aggiungo un item all'inventario
+    public boolean aggiungiEquip(Equip nuovo) {
+
+        if (nuovo.getPeso() + this.peso > PESO_MAX) return false; 
+
+        inventario.add(nuovo);
+        aggiornaPeso();
+
+        return true;
+    }
+
+    public boolean isMorto() {
+
+        return hp <= 0;
+    }
+
+    public void saluta() {
+        System.out.println("Ciao, mi chiamo " + nome + " e sono un " + razza);
+    }
+
+    // controlla se il peso attuale supera il carico massimo
+    public boolean isTroppoCarico() {
+        return peso > PESO_MAX;
     }
 
     public int getHp() {
