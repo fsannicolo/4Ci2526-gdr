@@ -14,13 +14,14 @@ public abstract class Giocatore {
         this.nome = nome;
         this.hp = this.HP_MAX = hp;
         this.mana = this.MANA_MAX = mana;
-        this.peso = this.PESO_MAX = peso;
+        this.peso = 0;
+        this.PESO_MAX = peso;
         this.razza = razza;
 
         this.inventario = new ArrayList<>();
     }
 
-    public void attacca(Giocatore target, int danno) {
+    public int attacca(Giocatore target, int danno) {
 
         boolean haArma = false;
 
@@ -35,7 +36,7 @@ public abstract class Giocatore {
 
         // controllo l'istanza del mio oggetto e attacco solo se ho l'arma
         if (!(this instanceof Guerriero) || !haArma) {
-            return;
+            return 0;
         }
 
         // verifico se il target ha armature e le conto
@@ -47,7 +48,9 @@ public abstract class Giocatore {
         }
 
         // modifico i puntivita del target
-        target.setHp(target.getHp() - danno / (armature + 1)); 
+        int dannoFinale = danno / (armature + 1);
+        target.setHp(target.getHp() - dannoFinale); 
+        return dannoFinale;
     }
 
     // calcola il peso attuale portato dal giocatore
