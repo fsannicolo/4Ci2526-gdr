@@ -5,6 +5,7 @@ public class App {
 
         Giocatore aragorn = new Guerriero("Aragorn", 100, 0, 80, Razza.Umano);
         Giocatore gandalf = new Mago("Gandalf", 70, 100, 20, Razza.Ent);
+        Giocatore sauron = new Mago("Sauron", 70, 1000, 200, Razza.Orco);
         Giocatore legolas = new Arciere("Legolas", 90, 0, 50, Razza.Elfo);
 
         team.aggiungiGiocatore(aragorn);
@@ -26,6 +27,12 @@ public class App {
 
         int danno = aragorn.attacca(legolas, 90);
         System.out.printf("Inflitti %d danni\n", danno);
+        team.salutaTutti();
+
+        int danno2 = gandalf.attacca(aragorn, 30);
+        System.out.printf("Inflitti %d danni\n", danno2);
+        int danno3 = gandalf.attacca(sauron, 50);
+        System.out.printf("Inflitti %d danni\n", danno3);
         team.salutaTutti();
     }
 }
