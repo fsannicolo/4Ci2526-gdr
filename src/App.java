@@ -25,7 +25,7 @@ public class App {
         legolas.aggiungiEquip(armor);
         legolas.aggiungiEquip(elmo);
 
-        int danno = aragorn.attacca(legolas, 90);
+        int danno = aragorn.attacca(legolas, 900);
         System.out.printf("Inflitti %d danni\n", danno);
         team.salutaTutti();
 
@@ -34,5 +34,30 @@ public class App {
         int danno3 = gandalf.attacca(sauron, 50);
         System.out.printf("Inflitti %d danni\n", danno3);
         team.salutaTutti();
+
+        // ----
+
+        Giocatore radagast = new Medico("Radagast", 70, 150, 30, Razza.Umano);
+        
+        // rianima (downcasting)
+        if (radagast instanceof Medico rad) {
+            //Medico rad = ((Medico)radagast);
+            rad.rianima(legolas);
+        }
+        else System.out.println("Non era un medico");
+
+        // tentativo di downcast errato
+        if (legolas instanceof Mago) {
+            Mago lego = (Mago)legolas;
+            lego.ricaricaMana();
+        }
+        else System.out.println("Non era un mago");
+
+        // cura
+        System.out.println(legolas.getHp());
+        radagast.attacca(legolas, 50);
+        System.out.println(legolas.getHp());
+
+
     }
 }

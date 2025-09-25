@@ -42,6 +42,16 @@ public class Mago extends Giocatore {
     }
 
     @Override
+    public boolean aggiungiEquip(Equip nuovo) {
+        
+        // un medico non deve portare armi
+        if (nuovo.getTipo() == TipoEquip.ArmaMelee || nuovo.getTipo() == TipoEquip.ArmaRanged)
+            return false;
+
+        return super.aggiungiEquip(nuovo);
+    }
+
+    @Override
     public void ricaricaMana() {
 
         mana = MANA_MAX;
