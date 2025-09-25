@@ -41,6 +41,7 @@ public class Mago extends Giocatore {
         return 0;
     }
 
+    @Override
     public void ricaricaMana() {
 
         mana = MANA_MAX;

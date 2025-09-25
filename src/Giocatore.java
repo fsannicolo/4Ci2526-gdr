@@ -79,6 +79,8 @@ public abstract class Giocatore {
         return true;
     }
 
+    public abstract void ricaricaMana();
+
     public boolean isMorto() {
 
         return hp <= 0;

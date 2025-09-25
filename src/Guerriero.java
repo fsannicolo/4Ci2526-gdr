@@ -4,5 +4,9 @@ public class Guerriero extends Giocatore {
         super(nome, hp, mana, peso, razza);  
     }
 
-    
+    @Override
+    public void ricaricaMana() {
+        
+    }
+
 }
